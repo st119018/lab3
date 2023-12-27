@@ -14,6 +14,8 @@ void FSM_uint(std::vector<unsigned int> const& strVect, std::vector <unsigned in
 
 void FSM_substr(std::string str, std::string substr, std::vector<char> const& alphabet);
 
+void FSM_ab(std::string str, std::vector<char> const& alphabet);
+
 int main() {
 
 	setlocale(LC_ALL, "RUSSIAN");
@@ -28,6 +30,7 @@ int main() {
 
 	std::cout << "\nТест 1.2: строка 'abcbaabcabacb'; алфавит: 'a', 'b', 'c'";
 	FSM_abaaba("abcbaabcabacb", std::vector<char> {'a', 'b', 'c'});
+
 
 	std::cout << "\n\n2) Второй автомат (тип char)";
 	std::cout << "\nВторой автомат принимает строку, если её первый символ встречается четное количество раз\n";
@@ -58,7 +61,14 @@ int main() {
 	std::cout << "\nТест 4.2: строка s 'aabccbbaad'; подстрока p 'cba'; алфавит: 'a', 'b', 'c', 'd'";
 	FSM_substr("aabccbbaad", "cba", std::vector<char>{'a', 'b', 'c', 'd'});
 
-	std::cout << std::endl;
+
+	std::cout << "\n\n\nДополнительный тест \n1) строка s 'cbdddcadebca'; подстрока p 'cadeb'; алфавит: 'a', 'b', 'c', 'd'";
+	FSM_substr("cbdddcadebca", "cadeb", std::vector<char>{'a', 'b', 'c', 'd', 'e'});
+
+	std::cout << "\n2) строка s 'cbdddcadebca'; подстрока p 'dddbcab'; алфавит: 'a', 'b', 'c', 'd', 'e'";
+	FSM_substr("cbdddcadebca", "dddbcae", std::vector<char> {'a', 'b', 'c', 'd', 'e'});
+
+	std::cout << std::endl << std::endl << std::endl;
 
 	return 0;
 }
@@ -253,4 +263,15 @@ void FSM_substr(std::string str, std::string substr, std::vector<char> const& al
 	else {
 		std::cout << "\nСтрока " << substr << " не принята";
 	}
+}
+
+void FSM_ab(std::string str, std::vector<char> const& alphabet)
+{
+	FiniteStateMachine<int, char> fsm;
+
+	fsm.setAlphabet(alphabet);
+	fsm.setInitial(0);
+	fsm.setTerminal(std::vector<int>{1, 2});
+
+
 }
