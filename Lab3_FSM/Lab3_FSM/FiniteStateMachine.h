@@ -29,7 +29,7 @@ public:
 		alphabet_ = alphabet;
 	}
 
-	void setTerminal(std::vector <StateT> terminalStates) {
+	void setTerminal(std::vector <StateT> const& terminalStates) {
 		terminalStates_ = terminalStates;
 	}
 
